@@ -14,8 +14,8 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_APP_ID, 
   
 };
-console.log(process.env)
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-console.log(app);
+
 export const auth = getAuth(app);
