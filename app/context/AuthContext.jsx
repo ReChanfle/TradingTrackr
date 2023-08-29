@@ -23,6 +23,16 @@ export const AuthContextProvider = ({ children }) => {
     signOut(auth);
   };
 
+  const accessToken = () => {
+
+    auth.currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
+        console.log(idToken)
+      }).catch(function(error) {
+        console.log(error)
+      });
+
+  }
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -31,7 +41,7 @@ export const AuthContextProvider = ({ children }) => {
   }, [user]);
 
   return (
-    <AuthContext.Provider value={{ user, googleSignIn, logOut }}>
+    <AuthContext.Provider value={{ user, googleSignIn, logOut, accessToken }}>
       {children}
     </AuthContext.Provider>
   );
